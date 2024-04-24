@@ -1,7 +1,7 @@
 import { AiOutlineSearch } from "react-icons/ai"
 import { MdLocationOn } from "react-icons/md"
 
-function Input() {
+function LocationInput() {
   return (
     <div className="flex flex-col justify-center items-center my-6">
       <form
@@ -32,4 +32,4 @@ function Input() {
   )
 }
 
-export default Input
+export default LocationInput

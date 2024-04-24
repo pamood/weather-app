@@ -2,12 +2,24 @@ import ToggleTemp from "./components/ToggleTemp"
 import TimeLocation from "./components/TimeLocation"
 import Details from "./components/Details"
 import Forecast from "./components/Forecast"
-import Input from "./components/Input"
+import LocationInput from "./components/LocationInput"
+import getFormattedWeatherData from "./api/weatherService"
+import { useEffect } from "react"
+
 function App() {
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      const data = await getFormattedWeatherData({ q: "london" })
+      console.log(data)
+    }
+
+    fetchWeatherData()
+  }, [])
+
   return (
-    <div className="mx-auto max-w-screen-md py-5 px-32 bg-sky-700 h-fit shadow-xl mt-10 ">
+    <div className="mx-auto max-w-screen-md py-5 px-32 bg-sky-700 h-fit shadow-xl mt-10">
       {/* <TopButton /> */}
-      <Input />
+      <LocationInput />
       <ToggleTemp />
       <TimeLocation />
       <Details />
@@ -16,4 +28,5 @@ function App() {
     </div>
   )
 }
+
 export default App
