@@ -1,5 +1,3 @@
-import React from "react"
-
 function TopButton() {
   const cities = [
     { id: 1, title: "London" },

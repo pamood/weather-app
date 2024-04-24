@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 function ToggleTemp() {
   const [isCelsius, setIsCelsius] = useState(true)

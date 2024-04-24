@@ -1,5 +1,3 @@
-import React from "react"
-
 import UilTepreature from "@iconscout/react-unicons/icons/uil-temperature"
 import UilTear from "@iconscout/react-unicons/icons/uil-tear"
 import UilWind from "@iconscout/react-unicons/icons/uil-wind"
