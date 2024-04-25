@@ -1,11 +1,11 @@
-import { DateTime } from "luxon"
+import { DateTime } from "luxon" // Assuming you're using Luxon for date manipulation
 
 const API_KEY = "756fab1e80ccd69dd0e21599ee7d84cd"
 const BASE_URL = "https://api.openweathermap.org/data/"
 
 const endpoints = {
-  current: `${BASE_URL}2.5/weather`,
-  onecall: `${BASE_URL}3.0/onecall`,
+  current: `${BASE_URL}/2.5/weather`,
+  onecall: `${BASE_URL}/3.0/onecall`,
 }
 
 async function awaitable(promise) {
@@ -30,7 +30,8 @@ function getWeatherData(infotype, searchParams) {
 
       const [all_data_raw, all_data_err] = await awaitable(
         fetch(
-          `${endpoints["onecall"]}?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=${exclude_data}&appid=${API_KEY}`
+          `${endpoints["onecall"]}?lat=${coordinates.lat}&lon=${coordinates.lon}` +
+            `&exclude=${exclude_data}&appid=${API_KEY}`
         )
       )
 
