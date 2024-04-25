@@ -9,7 +9,7 @@ import { useEffect } from "react"
 function App() {
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const data = await getFormattedWeatherData({ q: "London" })
+      const data = await getFormattedWeatherData({ city: "London" })
       if (data === "Network Error!") alert("Network Error!")
       console.log(data)
     }

@@ -4,8 +4,8 @@ const API_KEY = "756fab1e80ccd69dd0e21599ee7d84cd"
 const BASE_URL = "https://api.openweathermap.org/data/"
 
 const endpoints = {
-  current: `${BASE_URL}/2.5/weather`,
-  onecall: `${BASE_URL}/3.0/onecall`,
+  current: `${BASE_URL}2.5/weather`,
+  onecall: `${BASE_URL}3.0/onecall`,
 }
 
 async function awaitable(promise) {
@@ -16,7 +16,7 @@ const default_date_format = "cccc dd LLL yyyy'|Local time: 'hh:mm a"
 
 function getWeatherData(infotype, searchParams) {
   return new Promise((resolve, reject) => {
-    ;(async () => {
+    (async () => {
       const [current_data_raw, current_data_err] = await awaitable(
         fetch(`${endpoints["current"]}?q=${searchParams.city}&appid=${API_KEY}`)
       )
