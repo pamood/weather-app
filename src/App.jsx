@@ -9,7 +9,7 @@ import { useEffect } from "react"
 function App() {
   useEffect(() => {
     const fetchWeatherData = async () => {
-      const data = await getFormattedWeatherData({ q: "london" })
+      const data = await getFormattedWeatherData({ q: "lagos" })
       console.log(data)
     }
 
