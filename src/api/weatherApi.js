@@ -9,9 +9,9 @@ const endpoints = {
 }
 
 const getWeatherData = (infotype, searchParams) => {
-  const params = new URLSearchParams({ ...searchParams, appid: API_KEY });
-  const url = `${endpoints["current"]}?${params}`;
-  return fetch(url).then((response) => response.json());
+  const params = new URLSearchParams({ ...searchParams, appid: API_KEY })
+  const url = `${endpoints["current"]}?${params}`
+  return fetch(url).then((response) => response.json())
 }
 const formatCurrentWeather = (data) => {
   const {
@@ -46,7 +46,7 @@ const formatCurrentWeather = (data) => {
 const formatToLocalTime = (
   secs,
   zone,
-  format = "cccc dd LLL yyyy'|Local time: 'hh:mm a"
+  format = "cccc dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
 
 const formatForecastWeather = (data) => {
@@ -72,21 +72,20 @@ const getFormattedWeatherData = async (searchParams) => {
     "weather",
     searchParams
   ).then(formatCurrentWeather)
-const { lat, lon } = formattedCurrentWeather;
+  const { lat, lon } = formattedCurrentWeather
 
-const response = await fetch(
-  `${endpoints["onecall"]}?lat=${lat}&lon=${lon}&exclude=current,minutely,alerts&units=${searchParams.units}&appid=${API_KEY}`
-);
+  const response = await fetch(
+    `${endpoints["onecall"]}?lat=${lat}&lon=${lon}&exclude=current,minutely,alerts&units=${searchParams.units}&appid=${API_KEY}`
+  )
 
-const data = await response.json();
-const formattedForecastWeather = formatForecastWeather(data);
+  const data = await response.json()
+  const formattedForecastWeather = formatForecastWeather(data)
 
-return { ...formattedCurrentWeather, ...formattedForecastWeather };
+  return { ...formattedCurrentWeather, ...formattedForecastWeather }
 }
 
-const iconUrlFromCode = (icon) => `http://openweathermap.org/img/wn/${icon}.png`;
-
+const iconUrlFromCode = (icon) => `http://openweathermap.org/img/wn/${icon}.png`
 
 export default getFormattedWeatherData
 
-export { formatToLocalTime, iconUrlFromCode}
+export { formatToLocalTime, iconUrlFromCode }
