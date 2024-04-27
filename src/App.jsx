@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import TopBar from "./components/TopBar"
 import ToggleTemp from "./components/ToggleTemp"
 import TimeLocation from "./components/TimeLocation"
 import Details from "./components/Details"
@@ -18,8 +19,7 @@ function App() {
     const fetchWeatherData = async () => {
       try {
         const data = await getFormattedWeatherData({ ...query, units })
-
-        setWeather(data) // Set the weather data
+        setWeather(data)
         console.log(data)
       } catch (error) {
         console.error("Failed to fetch weather data:", error)
@@ -37,7 +37,8 @@ function App() {
   }
   return (
     <div className={`${formatBg()}`}>
-      <div className="mx-auto max-w-screen-md py-5 px-16 h-fit mt-10">
+      <TopBar />
+      <div className="mx-auto max-w-screen-md py-5 px-16 h-fit ">
         <TopButton setQuery={setQuery} />
         <LocationInput
           setQuery={setQuery}

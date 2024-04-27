@@ -7,11 +7,11 @@ function Forecast({ title, items }) {
         <p className="text-white font-medium uppercase text-xl">{title}</p>
       </div>
       <hr className="my-2" />
-      <div className="flex flex-row items-center justify-between text-white ">
+      <div className="flex flex-row items-center justify-between text-grey-200 ">
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center border border-white p-5 rounded-lg cursor-pointe"
+            className="flex flex-col items-center justify-center border border-white bg-gray-300 p-5 rounded-lg cursor-pointer mt-2"
           >
             <p className="font-light text-l">{item.title}</p>
             <img

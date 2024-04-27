@@ -8,7 +8,7 @@ const endpoints = {
   onecall: `${BASE_URL}/3.0/onecall`,
 }
 
-const getWeatherData = (infotype, searchParams) => {
+const getWeatherData = (searchParams) => {
   const params = new URLSearchParams({ ...searchParams, appid: API_KEY })
   const url = `${endpoints["current"]}?${params}`
   return fetch(url).then((response) => response.json())
@@ -68,10 +68,9 @@ const formatForecastWeather = (data) => {
   return { timezone, daily, hourly }
 }
 const getFormattedWeatherData = async (searchParams) => {
-  const formattedCurrentWeather = await getWeatherData(
-    "weather",
-    searchParams
-  ).then(formatCurrentWeather)
+  const formattedCurrentWeather = await getWeatherData(searchParams).then(
+    formatCurrentWeather
+  )
   const { lat, lon } = formattedCurrentWeather
 
   const response = await fetch(

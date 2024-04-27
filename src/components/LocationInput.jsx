@@ -26,9 +26,21 @@ function LocationInput({ setQuery }) {
             lon: position.coords.longitude,
           })
         },
-        // handle error here
         (error) => {
-          toast.error(`Error: ${error.message}`)
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              toast.error("Denied the request for Geolocation.")
+              break
+            case error.POSITION_UNAVAILABLE:
+              toast.error("Location information is unavailable.")
+              break
+            case error.TIMEOUT:
+              toast.error("The request to get location timed out.")
+              break
+            case error.UNKNOWN_ERROR:
+              toast.error("An unknown error occurred.")
+              break
+          }
         }
       )
     } else {
