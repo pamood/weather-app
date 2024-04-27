@@ -5,6 +5,7 @@ function ToggleTemp() {
   const [isCelsius, setIsCelsius] = useState(true)
   const { setUnits } = useContext(WeatherContext)
 
+  // Toggle between Celsius and Fahrenheit
   const toggleTemperature = () => {
     const newUnit = isCelsius ? "imperial" : "metric"
     setIsCelsius(!isCelsius)

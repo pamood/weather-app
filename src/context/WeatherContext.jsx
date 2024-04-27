@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import getFormattedWeatherData from "../api/weatherApi"
 import { toast } from "react-toastify"
+import Spinner from "../components/Spinner"
 
 export const WeatherContext = createContext()
 
@@ -9,6 +10,7 @@ export const WeatherProvider = ({ children }) => {
   const [units, setUnits] = useState("metric")
   const [weather, setWeather] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isFirstRender, setIsFirstRender] = useState(true) //
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -19,6 +21,7 @@ export const WeatherProvider = ({ children }) => {
       try {
         const data = await getFormattedWeatherData({ ...query, units })
         setWeather(data)
+        setIsFirstRender(false) // Set isFirstRender to false after the first data fetch
       } catch (error) {
         console.error(error)
       }
@@ -27,8 +30,8 @@ export const WeatherProvider = ({ children }) => {
 
     fetchWeatherData()
   }, [query, units])
-
   useEffect(() => {
+    // Fetch weather data based on geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -53,7 +56,8 @@ export const WeatherProvider = ({ children }) => {
     <WeatherContext.Provider
       value={{ query, setQuery, units, setUnits, weather, setWeather }}
     >
-      {children}
+      {isFirstRender && isLoading ? <Spinner /> : children}{" "}
+      {/* Display the Spinner component only on the first render */}
     </WeatherContext.Provider>
   )
 }

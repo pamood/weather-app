@@ -1,18 +1,22 @@
-import { DateTime } from "luxon" // Assuming you're using Luxon for date manipulation
+import { DateTime } from "luxon"
 
 const API_KEY = "756fab1e80ccd69dd0e21599ee7d84cd"
 const BASE_URL = "https://api.openweathermap.org/data/"
 
+// Endpoints for the current weather and one call API
 const endpoints = {
   current: `${BASE_URL}/2.5/weather`,
   onecall: `${BASE_URL}/3.0/onecall`,
 }
 
+// Get the weather data from the API
 const getWeatherData = (searchParams) => {
   const params = new URLSearchParams({ ...searchParams, appid: API_KEY })
   const url = `${endpoints["current"]}?${params}`
   return fetch(url).then((response) => response.json())
 }
+
+// Format the current weather data
 const formatCurrentWeather = (data) => {
   const {
     coord: { lon, lat },
@@ -43,12 +47,14 @@ const formatCurrentWeather = (data) => {
     speed,
   }
 }
+// Format a timestamp to local time
 const formatToLocalTime = (
   secs,
   zone,
   format = "cccc dd LLL yyyy' | Local time: 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
 
+// Format the forecast weather data
 const formatForecastWeather = (data) => {
   let { timezone, daily, hourly } = data
   daily = daily.slice(1, 6).map((d) => {
@@ -67,6 +73,8 @@ const formatForecastWeather = (data) => {
   })
   return { timezone, daily, hourly }
 }
+
+// Get the formatted weather data
 const getFormattedWeatherData = async (searchParams) => {
   const formattedCurrentWeather = await getWeatherData(searchParams).then(
     formatCurrentWeather
@@ -83,6 +91,7 @@ const getFormattedWeatherData = async (searchParams) => {
   return { ...formattedCurrentWeather, ...formattedForecastWeather }
 }
 
+// Get the icon URL from the icon code
 const iconUrlFromCode = (icon) => `http://openweathermap.org/img/wn/${icon}.png`
 
 export default getFormattedWeatherData

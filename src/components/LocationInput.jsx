@@ -8,6 +8,7 @@ function LocationInput() {
   const [city, setCity] = useState("")
   const { setQuery } = useContext(WeatherContext)
 
+  // Handle the form submission
   const handleSearchClick = (e) => {
     e.preventDefault()
     if (city.trim() !== "") {
@@ -15,6 +16,7 @@ function LocationInput() {
     }
   }
 
+  // Handle the location button click
   const handleLocationClick = (e) => {
     e.preventDefault()
     if (navigator.geolocation) {
@@ -52,7 +54,7 @@ function LocationInput() {
   return (
     <div className="flex flex-col justify-center items-center my-6">
       <form
-        onSubmit={handleSearchClick} // Handle form submission
+        onSubmit={handleSearchClick}
         className="max-w-[480px] w-full px-4 relative focus:outline-none"
       >
         <div className="relative focus:outline-none">
@@ -64,13 +66,13 @@ function LocationInput() {
             placeholder="Search for a city..."
           />
           <button
-            type="submit" // Use type="submit" for search button
+            type="submit"
             className="absolute right-10 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-sky-600 transition-colors duration-300 text-lg focus:outline-none"
           >
             <AiOutlineSearch />
           </button>
           <button
-            type="button" // Use type="button" for location button
+            type="button"
             onClick={handleLocationClick}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-sky-600 transition-colors duration-300 text-lg focus:outline-none"
           >
