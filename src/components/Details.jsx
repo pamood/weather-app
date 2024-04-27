@@ -28,7 +28,7 @@ function Details({ weather }) {
 
       <div className="flex flex-row items-center justify-between text-white py-3">
         <img src={iconUrlFromCode(icon)} alt="Weather Icon" className="w-40" />
-        <p className="text-5xl">{`${temp.toFixed(0)}°`}</p>
+        <p className="text-8xl">{`${temp.toFixed(0)}°`}</p>
         <div className="grid grid-cols-3 gap-2">
           <div className="flex items-center justify-end">
             {" "}
