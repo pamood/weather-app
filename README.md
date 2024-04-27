@@ -1,4 +1,4 @@
-# Weather Radar
+# Weather Radar ☀️⛈️
 
 Weather Radar is a React application that provides current weather data and forecasts. It uses the OpenWeatherMap API to fetch weather data based on the user's location or a user-specified location.
 
