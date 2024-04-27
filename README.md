@@ -6,8 +6,8 @@ Weather Radar is a React application that provides current weather data and fore
 
 - Display current weather data including temperature, humidity, wind speed, and more.
 - Show a 5-day forecast with daily weather data.
-- Allow users to search for weather data by city name.
-- Handle geolocation permissions and errors.
+- Allow users to search for weather data by city name and zip code.
+- Allow users to check weather of the own location.
 
 ## Installation
 
@@ -26,7 +26,7 @@ npm install
 3. Create a .env file in the root directory and add your OpenWeatherMap API key:
 
 ```
-OPENWEATHERMAP_API_KEY=your_api_key
+VITE_APP_OPENWEATHERMAP_API_KEY=your_api_key
 ```
 
 4. Start the development server:

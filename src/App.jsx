@@ -1,19 +1,18 @@
-import { useContext } from "react";
-import { WeatherContext } from "./context/WeatherContext";
-import TopBar from "./components/TopBar";
-import ToggleTemp from "./components/ToggleTemp";
-import TimeLocation from "./components/TimeLocation";
-import Details from "./components/Details";
-import LocationInput from "./components/LocationInput";
-import TopButton from "./components/TopButton";
-import Toast from "./components/Toast";
-import Spinner from "./components/Spinner";
-import ForecastWrapper from "./components/ForecastWrapper";
-import { formatBg } from "./utils/utils";
+import { useContext } from "react"
+import { WeatherContext } from "./context/WeatherContext"
+import TopBar from "./components/TopBar"
+import ToggleTemp from "./components/ToggleTemp"
+import TimeLocation from "./components/TimeLocation"
+import Details from "./components/Details"
+import LocationInput from "./components/LocationInput"
+import TopButton from "./components/TopButton"
+import Toast from "./components/Toast"
+import Spinner from "./components/Spinner"
+import ForecastWrapper from "./components/ForecastWrapper"
+import { formatBg } from "./utils/utils"
 
 function App() {
-  const { units, weather, isLoading } = useContext(WeatherContext);
-
+  const { units, weather, isLoading } = useContext(WeatherContext)
   return (
     <div className={formatBg(weather, units)}>
       <TopBar />
@@ -35,6 +34,6 @@ function App() {
       </div>
       <Toast />
     </div>
-  );
+  )
 }
-export default App;
+export default App

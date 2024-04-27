@@ -57,7 +57,6 @@ export const WeatherProvider = ({ children }) => {
       value={{ query, setQuery, units, setUnits, weather, setWeather }}
     >
       {isFirstRender && isLoading ? <Spinner /> : children}{" "}
-      {/* Display the Spinner component only on the first render */}
     </WeatherContext.Provider>
   )
 }

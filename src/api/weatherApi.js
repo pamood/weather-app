@@ -1,6 +1,6 @@
 import { DateTime } from "luxon"
 
-const API_KEY = "756fab1e80ccd69dd0e21599ee7d84cd"
+const API_KEY = import.meta.env.VITE_APP_OPENWEATHERMAP_API_KEY
 const BASE_URL = "https://api.openweathermap.org/data/"
 
 // Endpoints for the current weather and one call API
