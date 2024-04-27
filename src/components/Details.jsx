@@ -25,20 +25,20 @@ function Details() {
 
   return (
     <div>
-      <div className="flex items-center justify-center py-4 text-xl text-white font-medim">
+      <div className="flex items-center justify-center pt-4 text-xl text-white font-medim">
         {description}
       </div>
 
-      <div className="flex flex-col items-center  text-white py-2">
+      <div className="flex flex-col items-center text-white">
         <div className="flex items-center justify-center w-full">
           <img
             src={iconUrlFromCode(icon)}
             alt="Weather Icon"
-            className="w-40"
+            className="w-60"
           />
-          <p className="text-8xl">{`${temp.toFixed(0)}°`}</p>
+          <p className="text-9xl">{`${temp.toFixed(0)}°`}</p>
         </div>
-        <div className="flex justify-between w-full mt-4">
+        <div className="flex justify-between w-full mt-2">
           <div className="flex flex-col items-center">
             <UilTemperature size={18} />
             <p className="font-bold">feels like</p>

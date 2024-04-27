@@ -1,8 +1,8 @@
-import { formatToLocalTime } from "../api/weatherApi"
 import { useContext, useState, useEffect } from "react"
 import { WeatherContext } from "../context/WeatherContext"
 import Clock from "react-clock"
 import "react-clock/dist/Clock.css"
+import { formatToLocalTime } from "../api/weatherApi"
 
 function TimeLocation() {
   const { weather } = useContext(WeatherContext)
@@ -18,18 +18,12 @@ function TimeLocation() {
   }
 
   const { dt, timezone, name, country } = weather
-  const greeting = getGreetingMessage()
 
   return (
-    <div>
-      <div className="flex items-center justify-center my-2 space-x-4">
-        <AnalogClock date={date} />
-        <div className="flex flex-col items-start">
-          <GreetingMessage message={greeting} className="text-2xl" />
-          <LocalTime dt={dt} timezone={timezone} />
-        </div>
-      </div>
-      <div className="flex justify-center mt-5">
+    <div className="flex items-center justify-center my-2 space-x-4">
+      <AnalogClock date={date} />
+      <div className="flex flex-col items-center">
+        <LocalTime dt={dt} timezone={timezone} />
         <Location name={name} country={country} />
       </div>
     </div>
@@ -38,25 +32,6 @@ function TimeLocation() {
 
 function LoadingMessage() {
   return <div>Loading time and location data...</div>
-}
-
-function getGreetingMessage() {
-  const currentHour = new Date().getHours()
-  if (currentHour < 12) {
-    return "Good Morning! ☀️"
-  } else if (currentHour < 18) {
-    return "Good Afternoon 🌤️"
-  } else {
-    return "Good Evening 🌙"
-  }
-}
-
-function GreetingMessage({ message }) {
-  return (
-    <div className="flex items-center justify-center font-medium">
-      <p className="text-white text-xl">{message}</p>
-    </div>
-  )
 }
 
 function AnalogClock({ date }) {
@@ -69,7 +44,7 @@ function AnalogClock({ date }) {
 
 function LocalTime({ dt, timezone }) {
   return (
-    <p className="text-white">
+    <p className="text-white text-lg">
       {dt && timezone ? formatToLocalTime(dt, timezone) : "Unavailable time"}
     </p>
   )
@@ -78,7 +53,7 @@ function LocalTime({ dt, timezone }) {
 function Location({ name, country }) {
   return (
     <div className="flex items-center justify-center my-3">
-      <p className="text-white text-xl font-medium  p-2 rounded-full w-60 text-center bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg">
+      <p className="text-white text-xl font-medium p-2 rounded-full w-72 text-center bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg">
         {name ? `${name}, ${country}` : "Location unavailable"}
       </p>
     </div>
