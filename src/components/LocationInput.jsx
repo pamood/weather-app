@@ -62,7 +62,7 @@ function LocationInput() {
             value={city}
             onChange={(e) => setCity(e.currentTarget.value)}
             type="text"
-            className="w-full border h-12 shadow p-4 pr-12 rounded-full dark:text-gray-800 dark:bg-gray-200 focus:outline-none"
+            className="w-full border h-12 shadow p-4 pr-12 rounded-full dark:text-gray-800 dark:bg-gray-200 focus:outline-none bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg"
             placeholder="Search for a city..."
           />
           <button

@@ -51,7 +51,7 @@ const formatCurrentWeather = (data) => {
 const formatToLocalTime = (
   secs,
   zone,
-  format = "cccc dd LLL yyyy' | Local time: 'hh:mm a"
+  format = "cccc dd LLL yyyy '  |  ' hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
 
 // Format the forecast weather data
