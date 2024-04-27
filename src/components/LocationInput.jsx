@@ -35,7 +35,7 @@ function LocationInput({ setQuery }) {
               toast.error("Location information is unavailable.")
               break
             case error.TIMEOUT:
-              toast.error("The request to get location timed out.")
+              toast.error("The request to get user location timed out.")
               break
             case error.UNKNOWN_ERROR:
               toast.error("An unknown error occurred.")
