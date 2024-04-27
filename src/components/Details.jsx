@@ -1,11 +1,14 @@
+import { useContext } from "react"
 import UilTemperature from "@iconscout/react-unicons/icons/uil-temperature"
 import UilTear from "@iconscout/react-unicons/icons/uil-tear"
 import UilWind from "@iconscout/react-unicons/icons/uil-wind"
 import UilSun from "@iconscout/react-unicons/icons/uil-sun"
 import UilSunset from "@iconscout/react-unicons/icons/uil-sunset"
 import { formatToLocalTime, iconUrlFromCode } from "../api/weatherApi"
+import { WeatherContext } from "../context/WeatherContext"
 
-function Details({ weather }) {
+function Details() {
+  const { weather } = useContext(WeatherContext)
   const {
     description,
     icon,

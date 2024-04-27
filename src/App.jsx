@@ -1,68 +1,40 @@
-import { useState, useEffect } from "react"
-import TopBar from "./components/TopBar"
-import ToggleTemp from "./components/ToggleTemp"
-import TimeLocation from "./components/TimeLocation"
-import Details from "./components/Details"
-import Forecast from "./components/Forecast"
-import LocationInput from "./components/LocationInput"
-import TopButton from "./components/TopButton"
-import getFormattedWeatherData from "./api/weatherApi"
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { useContext } from "react";
+import { WeatherContext } from "./context/WeatherContext";
+import TopBar from "./components/TopBar";
+import ToggleTemp from "./components/ToggleTemp";
+import TimeLocation from "./components/TimeLocation";
+import Details from "./components/Details";
+import LocationInput from "./components/LocationInput";
+import TopButton from "./components/TopButton";
+import Toast from "./components/Toast";
+import Spinner from "./components/Spinner";
+import ForecastWrapper from "./components/ForecastWrapper";
+import { formatBg } from "./utils/utils";
 
 function App() {
-  const [query, setQuery] = useState({ q: "" })
-  const [units, setUnits] = useState("metric")
-  const [weather, setWeather] = useState(null)
+  const { units, weather, isLoading } = useContext(WeatherContext);
 
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        const data = await getFormattedWeatherData({ ...query, units })
-        setWeather(data)
-        console.log(data)
-      } catch (error) {
-        console.error("Failed to fetch weather data:", error)
-      }
-    }
-
-    fetchWeatherData()
-  }, [query, units])
-
-  const formatBg = () => {
-    if (!weather) return "bg-sky-700"
-    const threshold = units === "metric" ? 20 : 60
-    if (weather.temp <= threshold) return "bg-sky-600"
-    return "bg-orange-600"
-  }
   return (
-    <div className={`${formatBg()}`}>
+    <div className={formatBg(weather, units)}>
       <TopBar />
       <div className="mx-auto max-w-screen-md py-5 px-16 h-fit ">
-        <TopButton setQuery={setQuery} />
-        <LocationInput
-          setQuery={setQuery}
-          units={setUnits}
-          setUnits={setQuery}
-        />
-        <ToggleTemp weather={weather} setUnits={setUnits} />
-        {weather && (
-          <>
-            <TimeLocation weather={weather} />
-            <Details weather={weather} />
-            <Forecast title="hourly forecast" items={weather.hourly} />
-            <Forecast title="daily forecast" items={weather.daily} />
-          </>
+        <TopButton />
+        <LocationInput />
+        <ToggleTemp />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          weather && (
+            <>
+              <TimeLocation />
+              <Details />
+              <ForecastWrapper weather={weather} />
+            </>
+          )
         )}
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={4000}
-        theme="light"
-        newestOnTop={true}
-        closeOnClick={true}
-      />
+      <Toast />
     </div>
-  )
+  );
 }
-export default App
+export default App;

@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react"
+import { WeatherContext } from "../context/WeatherContext"
 
-function ToggleTemp({ setUnits }) {
-  const [isCelsius, setIsCelsius] = useState(true);
+function ToggleTemp() {
+  const [isCelsius, setIsCelsius] = useState(true)
+  const { setUnits } = useContext(WeatherContext)
 
   const toggleTemperature = () => {
-    const newUnit = isCelsius ? 'imperial' : 'metric';
-    setIsCelsius(!isCelsius);
-    setUnits(newUnit);
-  };
+    const newUnit = isCelsius ? "imperial" : "metric"
+    setIsCelsius(!isCelsius)
+    setUnits(newUnit)
+  }
 
   return (
     <div
@@ -16,7 +18,7 @@ function ToggleTemp({ setUnits }) {
     >
       {isCelsius ? "Celsius (°C)" : "Fahrenheit (°F)"}
     </div>
-  );
+  )
 }
 
-export default ToggleTemp;
+export default ToggleTemp

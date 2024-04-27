@@ -1,6 +1,9 @@
 import { formatToLocalTime } from "../api/weatherApi"
+import { useContext } from "react"
+import { WeatherContext } from "../context/WeatherContext"
 
-function TimeLocation({ weather }) {
+function TimeLocation() {
+  const { weather } = useContext(WeatherContext)
   if (!weather) {
     return <div>Loading time and location data...</div>
   }

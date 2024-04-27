@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { AiOutlineSearch } from "react-icons/ai"
 import { MdLocationOn } from "react-icons/md"
 import { toast } from "react-toastify"
+import { WeatherContext } from "../context/WeatherContext"
 
-function LocationInput({ setQuery }) {
+function LocationInput() {
   const [city, setCity] = useState("")
+  const { setQuery } = useContext(WeatherContext)
 
   const handleSearchClick = (e) => {
     e.preventDefault()
     if (city.trim() !== "") {
-      setQuery({ q: city.trim() }) // Set query with trimmed city value
+      setQuery({ q: city.trim() })
     }
   }
 
