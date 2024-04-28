@@ -13,6 +13,7 @@ function LocationInput() {
     e.preventDefault()
     if (city.trim() !== "") {
       setQuery({ q: city.trim() })
+      setCity("")
     }
   }
 
