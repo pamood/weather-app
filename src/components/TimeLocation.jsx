@@ -1,17 +1,9 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import { WeatherContext } from "../context/WeatherContext"
-import Clock from "react-clock"
-import "react-clock/dist/Clock.css"
 import { formatToLocalTime } from "../api/weatherApi"
 
 function TimeLocation() {
   const { weather } = useContext(WeatherContext)
-  const [date, setDate] = useState(new Date())
-
-  useEffect(() => {
-    const interval = setInterval(() => setDate(new Date()), 1000)
-    return () => clearInterval(interval)
-  }, [])
 
   if (!weather) {
     return <LoadingMessage />
@@ -21,7 +13,6 @@ function TimeLocation() {
 
   return (
     <div className="flex items-center justify-center my-2 space-x-4">
-      <AnalogClock date={date} />
       <div className="flex flex-col items-center">
         <LocalTime dt={dt} timezone={timezone} />
         <Location name={name} country={country} />
@@ -32,14 +23,6 @@ function TimeLocation() {
 
 function LoadingMessage() {
   return <div>Loading time and location data...</div>
-}
-
-function AnalogClock({ date }) {
-  return (
-    <div className="bg-white bg-opacity-80 p-2 rounded-full backdrop-filter backdrop-blur-lg">
-      <Clock value={date} size={100} />
-    </div>
-  )
 }
 
 function LocalTime({ dt, timezone }) {
