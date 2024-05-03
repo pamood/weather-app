@@ -30,7 +30,9 @@ export const WeatherProvider = ({ children }) => {
         console.log(data)
       } catch (error) {
         console.error(error)
-        toast.error("🚫 An error occurred while fetching the weather data.")
+        toast.error(
+          "🚫 An error occurred while fetching the weather data, Wrong input."
+        )
       }
       setIsLoading(false)
     }
