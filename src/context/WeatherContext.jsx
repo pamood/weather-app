@@ -20,16 +20,24 @@ export const WeatherProvider = ({ children }) => {
       setIsLoading(true)
       try {
         const data = await getFormattedWeatherData({ ...query, units })
+        if (data.cod === "404") {
+          toast.error("🚫 The entered location was not found.")
+          setIsLoading(false)
+          return
+        }
         setWeather(data)
         setIsFirstRender(false) // Set isFirstRender to false after the first data fetch
+        console.log(data)
       } catch (error) {
         console.error(error)
+        toast.error("🚫 An error occurred while fetching the weather data.")
       }
       setIsLoading(false)
     }
 
     fetchWeatherData()
   }, [query, units])
+
   useEffect(() => {
     // Fetch weather data based on geolocation
     if (navigator.geolocation) {
